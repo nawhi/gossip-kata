@@ -9,5 +9,10 @@ describe('GossipCalculator', () => {
   it('calculates that 2 drivers never meet if their routes do not interact', () => {
     const routes = [[1], [2]];
     expect(new GossipCalculator(routes).calculateStops()).toBe('never');
+  });
+  
+  it('calculates that 2 drivers with different routes meet at the second stop', () => {
+    const routes = [[1, 2], [3, 2]];
+    expect(new GossipCalculator(routes).calculateStops()).toBe(2);
   })
 });

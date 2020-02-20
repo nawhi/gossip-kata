@@ -7,8 +7,13 @@ export class GossipCalculator {
     }
 
     public calculateStops(): number | 'never' {
-        if (this.routes[0][0] === this.routes[1][0]) {
+        const [r1, r2] = this.routes;
+
+        if (r1[0] === r2[0]) {
             return 1;
+        }
+        if (Number(r1[1]) === Number(r2[1])) {
+            return 2;
         }
         return 'never';
     }
