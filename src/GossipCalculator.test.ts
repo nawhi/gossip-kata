@@ -21,10 +21,18 @@ describe('GossipCalculator', () => {
     expect(new GossipCalculator(routes).calculateStops()).toBe(3);
   })
   
-  it('repeats routes when they end', () => {
+  it('repeats single-stop route when it ends', () => {
     const routes = [[1, 2, 3], [3]];
     expect(new GossipCalculator(routes).calculateStops()).toBe(3);
   });
+  
+  it('repeats multi-stop route when it ends', () => {
+    // 121212
+    // 432432
+    //      ^
+    const routes = [[1, 2], [4, 3, 2]];
+    expect(new GossipCalculator(routes).calculateStops()).toBe(6);
+  })
   
   it.todo('better for repeating route - [1, 2] + [4, 3, 2]')
 });
