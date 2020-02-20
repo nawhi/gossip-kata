@@ -1,4 +1,4 @@
-import { GossipCalculator } from './GossipCalculator';
+import { calculateStops } from './GossipCalculator';
 
 describe('Gossip Calculator Acceptance', () => {
   it('calculates number of stops for drivers to know all the gossips', () => {
@@ -14,7 +14,7 @@ describe('Gossip Calculator Acceptance', () => {
       [4, 2, 3, 4, 5],
       [5, 4, 3, 2, 1]
     ];
-    expect(new GossipCalculator(routes).calculateStops()).toBe(12);
+    expect(calculateStops(routes)).toBe(12);
   });
 
   it('returns "never" if not all drivers know all gossips after 480 minutes', () => {
@@ -22,6 +22,6 @@ describe('Gossip Calculator Acceptance', () => {
       [2, 1, 2],
       [5, 2, 8]
     ];
-    expect(new GossipCalculator(routes).calculateStops()).toBe('never');
+    expect(calculateStops(routes)).toBe('never');
   });
 });

@@ -1,12 +1,17 @@
-import { GossipTracker, generateDriverCombinations } from './GossipTracker';
-import { makeRoute, Route } from './Route';
+import { generateDriverCombinations, GossipTracker } from './GossipTracker';
+import { Route } from './Route';
+
 const MAX_STOPS = 480;
 
-export class GossipCalculator {
+export function calculateStops(routes: number[][]) {
+  return new GossipCalculator(routes).calculateStops();
+}
+
+class GossipCalculator {
   private readonly routes: Route[];
 
   constructor(input: number[][]) {
-    this.routes = input.map(makeRoute);
+    this.routes = input.map(stops => new Route(stops));
   }
 
   public calculateStops(): number | 'never' {
