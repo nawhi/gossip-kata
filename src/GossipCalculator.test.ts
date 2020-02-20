@@ -21,12 +21,20 @@ describe('GossipCalculator', () => {
     expect(new GossipCalculator(routes).calculateStops()).toBe(3);
   });
 
-  it('calculates for 2 drivers who meet after 300 stops', () => {
+  it('calculates for 2 drivers who meet after 479 stops', () => {
     const routes = [
-      Array(299).fill(1).concat(2),
-      Array(300).fill(2)
+      Array(478).fill(1).concat(2),
+      Array(479).fill(2)
     ];
-    expect(new GossipCalculator(routes).calculateStops()).toBe(300);
+    expect(new GossipCalculator(routes).calculateStops()).toBe(479);
+  });
+
+  it('returns "never" for drivers who meet after 480 stops', () => {
+    const routes = [
+      Array(480).fill(1).concat(2),
+      Array(481).fill(2)
+    ];
+    expect(new GossipCalculator(routes).calculateStops()).toBe('never');
   });
 
   it('repeats single-stop route when it ends', () => {
@@ -41,13 +49,4 @@ describe('GossipCalculator', () => {
     const routes = [[1, 2], [4, 3, 2]];
     expect(new GossipCalculator(routes).calculateStops()).toBe(6);
   });
-
-  xit('does not match drivers after the 480-stop maximum', () => {
-    const routes = [
-      Array(499).fill(1).concat(2),
-      Array(500).fill(2)
-    ];
-    expect(new GossipCalculator(routes).calculateStops()).toBe('never');
-  });
-
 });
