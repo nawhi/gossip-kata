@@ -7,7 +7,7 @@ export class GossipTracker {
     this.numCombos = choose(nels, 2);
   }
 
-  public register(i: number, j: number) {
+  public exchangeGossip(i: number, j: number) {
     const hashedValue: string = this.hash(i, j);
     this.registered.add(hashedValue);
   }
@@ -17,7 +17,7 @@ export class GossipTracker {
       .map(hash => this.unhash(hash));
   }
 
-  public allRegistered() {
+  public allGossipExchanged(): boolean {
     return this.registered.size === this.numCombos;
   }
 
@@ -30,12 +30,12 @@ export class GossipTracker {
   }
 }
 
-export function generateCombinations(nels: number): number[][] {
+export function generateDriverCombinations(nels: number): number[][] {
   const map = new GossipTracker(nels);
   for (let i = 0; i < nels; i++) {
     for (let j = 0; j < nels; j++) {
       if (i !== j) {
-        map.register(i, j);
+        map.exchangeGossip(i, j);
       }
     }
   }
