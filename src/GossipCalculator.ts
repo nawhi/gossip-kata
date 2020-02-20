@@ -1,7 +1,7 @@
 import { circular } from './CircularArray';
 
 type Stop = number;
-type Route = Stop[];
+export type Route = Stop[];
 
 export class GossipCalculator {
   constructor(private routes: Route[]) {
