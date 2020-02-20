@@ -3,10 +3,6 @@ import { Route } from './Route';
 
 const MAX_MINUTES = 480;
 
-function getRoutesFrom(rawRoutes: number[][]) {
-  return rawRoutes.map(stops => new Route(stops));
-}
-
 export function gossipCalculator(input: number[][]) {
   const routes = getRoutesFrom(input);
   const numDrivers = routes.length;
@@ -24,4 +20,8 @@ export function gossipCalculator(input: number[][]) {
   }
 
   return 'never';
+}
+
+function getRoutesFrom(rawRoutes: number[][]): Route[] {
+  return rawRoutes.map(stops => new Route(stops));
 }

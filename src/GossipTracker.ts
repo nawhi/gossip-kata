@@ -8,38 +8,38 @@ export class GossipTracker {
   }
 
   public registerGossip(i: number, j: number) {
-    const hashedValue: string = this.hash(i, j);
+    const hashedValue: string = tuple(i, j);
     this.registered.add(hashedValue);
   }
 
-  public combinations() {
-    return [...this.registered]
-      .map(hash => this.unhash(hash));
+  public combinations(): number[][] {
+    return [...this.registered].map(detuple);
   }
 
   public allGossipExchanged(): boolean {
     return this.registered.size === this.numCombos;
   }
 
-  private hash(i, j) {
-    return [i, j].sort().join('|');
-  }
-
-  private unhash(hash: string): number[] {
-    return [...hash.split('|')].map(i => parseInt(i, 10));
-  }
 }
 
 export function generateDriverCombinations(nels: number): number[][] {
-  const map = new GossipTracker(nels);
+  const tracker = new GossipTracker(nels);
   for (let i = 0; i < nels; i++) {
     for (let j = 0; j < nels; j++) {
       if (i !== j) {
-        map.registerGossip(i, j);
+        tracker.registerGossip(i, j);
       }
     }
   }
-  return map.combinations();
+  return tracker.combinations();
+}
+
+function tuple(i, j): string {
+  return [i, j].sort().join('|');
+}
+
+function detuple(aTuple: string): number[] {
+  return [...aTuple.split('|')].map(i => parseInt(i, 10));
 }
 
 function choose(n, m) {
