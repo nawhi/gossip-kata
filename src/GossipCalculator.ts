@@ -7,6 +7,9 @@ export class GossipCalculator {
     }
 
     public calculateStops(): number | 'never' {
-        throw new Error('not implemented');
+        if (this.routes[0][0] === this.routes[1][0]) {
+            return 1;
+        }
+        return 'never';
     }
 }

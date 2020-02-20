@@ -1,7 +1,13 @@
-import {GossipCalculator} from './GossipCalculator'
+import { GossipCalculator } from './GossipCalculator';
 
 describe('GossipCalculator', () => {
-    it('does stuff', function() {
-
-    })
-})
+  it('calculates that 2 drivers meet at the first stop', () => {
+    const routes = [[1], [1]];
+    expect(new GossipCalculator(routes).calculateStops()).toBe(1);
+  });
+  
+  it('calculates that 2 drivers never meet if their routes do not interact', () => {
+    const routes = [[1], [2]];
+    expect(new GossipCalculator(routes).calculateStops()).toBe('never');
+  })
+});
