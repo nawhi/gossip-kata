@@ -57,15 +57,24 @@ describe('GossipCalculator', () => {
   });
 
   describe('3 drivers', () => {
-    test('meeting at the first stop', () => {
+    test('all meeting at the first stop', () => {
       const routes = [[1], [1], [1]];
       expect(new GossipCalculator(routes).calculateStops()).toBe(1);
     });
 
-    test('meeting at the second stop', () => {
+    test('all meeting at the second stop', () => {
       const routes = [[1], [1], [2, 1]];
       expect(new GossipCalculator(routes).calculateStops()).toBe(2);
-    })
+    });
+
+    test('meeting at different stops', () => {
+      const routes = [
+        [1, 9, 3],
+        [1, 2, 9],
+        [9, 2, 3]
+      ];
+      expect(new GossipCalculator(routes).calculateStops()).toBe(3);
+    });
 
   });
 
