@@ -37,12 +37,12 @@ describe('GossipCalculator', () => {
     expect(new GossipCalculator(routes).calculateStops()).toBe('never');
   });
 
-  it('repeats single-stop route when it ends', () => {
+  it('repeats a single-stop route when it ends', () => {
     const routes = [[1, 2, 3], [3]];
     expect(new GossipCalculator(routes).calculateStops()).toBe(3);
   });
 
-  it('repeats multi-stop route when it ends', () => {
+  it('repeats a multi-stop route when it ends', () => {
     // 121212
     // 432432
     //      ^
