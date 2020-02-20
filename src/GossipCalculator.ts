@@ -9,7 +9,7 @@ export class GossipCalculator {
     const [r1, r2] = this.routes;
 
     for (const i of [0, 1, 2]) {
-      if (Number(r1[i]) === Number(r2[i])) {
+      if (r1[i % r1.length] === r2[i % r2.length]) {
         return i + 1;
       }
     }

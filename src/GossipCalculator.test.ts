@@ -21,7 +21,7 @@ describe('GossipCalculator', () => {
     expect(new GossipCalculator(routes).calculateStops()).toBe(3);
   })
   
-  xit('repeats routes when they end', () => {
+  it('repeats routes when they end', () => {
     const routes = [[1, 2, 3], [3]];
     expect(new GossipCalculator(routes).calculateStops()).toBe(3);
   });
