@@ -1,18 +1,7 @@
+import { circular } from './CircularArray';
+
 type Stop = number;
 type Route = Stop[];
-
-class CircularArray<T> {
-  constructor(private array: T[]) {
-  }
-
-  public get(i) {
-    return this.array[i % this.array.length];
-  }
-}
-
-function circular<T>(arr: T[]): CircularArray<T> {
-  return new CircularArray<T>(arr);
-}
 
 export class GossipCalculator {
   constructor(private routes: Route[]) {
