@@ -1,13 +1,7 @@
+import { CombinationMap } from './CombinationMap';
 import { makeRoute, Route } from './Route';
 
 type Stop = number;
-
-class CombinationMap {
-  constructor(private routes: Route[]) {
-
-  }
-
-}
 
 export class GossipCalculator {
   private readonly routes: Route[];
@@ -18,22 +12,22 @@ export class GossipCalculator {
 
   public calculateStops(): number | 'never' {
     if (this.routes.length === 3) {
-      const [r1, r2, r3] = this.routes;
-      const matches = Array(3).fill(false);
-      let [r1r3matched, r2r3matched, r1r2matched] = matches;
+      const [r0, r1, r2] = this.routes;
+
+      const combinationMap = new CombinationMap(this.routes.length);
 
       for (let i = 0; i < 480; i++) {
+        if (r0.stopAt(i) === r1.stopAt(i)) {
+          combinationMap.register(0, 1);
+        }
         if (r1.stopAt(i) === r2.stopAt(i)) {
-          r1r2matched = true;
+          combinationMap.register(1, 2);
         }
-        if (r2.stopAt(i) === r3.stopAt(i)) {
-          r2r3matched = true;
-        }
-        if (r1.stopAt(i) === r3.stopAt(i)) {
-          r1r3matched = true;
+        if (r0.stopAt(i) === r2.stopAt(i)) {
+          combinationMap.register(2, 3);
         }
 
-        if ([r1r3matched, r2r3matched, r1r2matched].every(m => m)) {
+        if (combinationMap.allRegistered()) {
           return i + 1;
         }
       }
