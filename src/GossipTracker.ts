@@ -7,7 +7,7 @@ export class GossipTracker {
     this.numCombos = choose(nels, 2);
   }
 
-  public exchangeGossip(i: number, j: number) {
+  public registerGossip(i: number, j: number) {
     const hashedValue: string = this.hash(i, j);
     this.registered.add(hashedValue);
   }
@@ -35,7 +35,7 @@ export function generateDriverCombinations(nels: number): number[][] {
   for (let i = 0; i < nels; i++) {
     for (let j = 0; j < nels; j++) {
       if (i !== j) {
-        map.exchangeGossip(i, j);
+        map.registerGossip(i, j);
       }
     }
   }

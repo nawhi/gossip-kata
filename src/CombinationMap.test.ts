@@ -8,29 +8,29 @@ describe('CombinationMap', () => {
 
   it('registers a combination with indices (0-indexed)', () => {
     const map = new GossipTracker(2);
-    map.exchangeGossip(0, 1);
+    map.registerGossip(0, 1);
     expect(map.allGossipExchanged()).toBe(true);
   });
 
   it('works for 3', () => {
     const map = new GossipTracker(3);
-    map.exchangeGossip(0, 1);
-    map.exchangeGossip(1, 2);
-    map.exchangeGossip(0, 2);
+    map.registerGossip(0, 1);
+    map.registerGossip(1, 2);
+    map.registerGossip(0, 2);
     expect(map.allGossipExchanged()).toBe(true);
   });
 
   it('ignores duplicate registrations', () => {
     const map = new GossipTracker(3);
-    map.exchangeGossip(0, 1);
-    map.exchangeGossip(1, 0);
-    map.exchangeGossip(1, 2);
+    map.registerGossip(0, 1);
+    map.registerGossip(1, 0);
+    map.registerGossip(1, 2);
     expect(map.allGossipExchanged()).toBe(false);
   });
 
   it('returns registered combinations', () => {
     const map = new GossipTracker(9);
-    map.exchangeGossip(0, 1);
+    map.registerGossip(0, 1);
     expect(map.combinations()).toEqual([[0, 1]]);
   });
 });
