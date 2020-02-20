@@ -1,4 +1,4 @@
-export class CombinationMap {
+export class GossipTracker {
 
   private readonly numCombos: number;
   private registered = new Set<string>();
@@ -31,7 +31,7 @@ export class CombinationMap {
 }
 
 export function generateCombinations(nels: number): number[][] {
-  const map = new CombinationMap(nels);
+  const map = new GossipTracker(nels);
   for (let i = 0; i < nels; i++) {
     for (let j = 0; j < nels; j++) {
       if (i !== j) {
