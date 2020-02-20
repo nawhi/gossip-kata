@@ -3,7 +3,7 @@ import { Route } from './Route';
 
 const MAX_STOPS = 480;
 
-export function calculateStops(input: number[][]) {
+export function gossipCalculator(input: number[][]) {
   const routes = input.map(stops => new Route(stops));
   const tracker = new GossipTracker(routes.length);
   const driverCombinations = generateDriverCombinations(routes.length);
