@@ -15,7 +15,3 @@ class HelloWorld {
     return this.dependency.Log(message)
   }
 }
-
-export {
-  HelloWorld
-}
