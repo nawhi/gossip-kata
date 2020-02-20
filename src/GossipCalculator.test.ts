@@ -77,4 +77,17 @@ describe('GossipCalculator', () => {
     });
   });
 
+  describe('4 drivers', () => {
+    test('2 meeting at the first stop and the rest at the second', () => {
+      const routes = [
+        [1, 9],
+        [1, 9],
+        [2, 9],
+        [3, 9]
+      ];
+      expect(new GossipCalculator(routes).calculateStops()).toBe(2);
+
+    })
+  });
+
 });
