@@ -1,4 +1,4 @@
-import { CombinationMap } from './CombinationMap';
+import { CombinationMap, generateCombinations } from './CombinationMap';
 import { makeRoute, Route } from './Route';
 
 type Stop = number;
@@ -11,34 +11,22 @@ export class GossipCalculator {
   }
 
   public calculateStops(): number | 'never' {
-    if (this.routes.length === 3) {
-      const [r0, r1, r2] = this.routes;
+    const combinationMap = new CombinationMap(this.routes.length);
+    const combinations = generateCombinations(this.routes.length);
+    console.log(combinations);
+    for (let i = 0; i < 480; i++) {
 
-      const combinationMap = new CombinationMap(this.routes.length);
+      for (const [driver1, driver2] of combinations) {
+        const route1 = this.routes[driver1];
+        const route2 = this.routes[driver2];
 
-      for (let i = 0; i < 480; i++) {
-        if (r0.stopAt(i) === r1.stopAt(i)) {
-          combinationMap.register(0, 1);
-        }
-        if (r1.stopAt(i) === r2.stopAt(i)) {
-          combinationMap.register(1, 2);
-        }
-        if (r0.stopAt(i) === r2.stopAt(i)) {
-          combinationMap.register(2, 3);
-        }
-
-        if (combinationMap.allRegistered()) {
-          return i + 1;
+        if (route1.stopAt(i) === route2.stopAt(i)) {
+          // this pair of drivers can exchange gossip
+          combinationMap.register(driver1, driver2);
         }
       }
-
-    } else if (this.routes.length === 2) {
-      const [r1, r2] = this.routes;
-
-      for (let i = 0; i < 480; i++) {
-        if (r1.stopAt(i) === r2.stopAt(i)) {
-          return i + 1;
-        }
+      if (combinationMap.allRegistered()) {
+        return i + 1;
       }
     }
 

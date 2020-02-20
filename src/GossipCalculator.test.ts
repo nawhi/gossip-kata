@@ -75,7 +75,6 @@ describe('GossipCalculator', () => {
       ];
       expect(new GossipCalculator(routes).calculateStops()).toBe(3);
     });
-
   });
 
 });
