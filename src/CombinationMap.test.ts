@@ -1,4 +1,4 @@
-import { CombinationMap, generateCombinations } from './CombinationMap';
+import { CombinationMap } from './CombinationMap';
 
 describe('CombinationMap', () => {
   it('knows if not all combinations have been registered', () => {
@@ -26,17 +26,5 @@ describe('CombinationMap', () => {
     map.register(1, 0);
     map.register(1, 2);
     expect(map.allRegistered()).toBe(false);
-  });
-
-  it('returns combinations', () => {
-    const map = new CombinationMap(3);
-    map.register(0, 1);
-    expect(map.combinations()).toEqual([[0, 1]]);
   })
 });
-
-describe('generateCombinations', () => {
-  it('generates non-order-specific combinations of 2 numbers from the given length', () => {
-    console.log(generateCombinations(10));
-  })
-})
