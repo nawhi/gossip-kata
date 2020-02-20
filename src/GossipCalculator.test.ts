@@ -41,12 +41,12 @@ describe('GossipCalculator', () => {
     });
 
     describe('different-length routes', () => {
-      test('single-stop routes repeat', () => {
+      test('single-stop routes repeat themselves', () => {
         const routes = [[1, 2, 3], [3]];
         expect(new GossipCalculator(routes).calculateStops()).toBe(3);
       });
 
-      test('multi-stop routes repeat', () => {
+      test('multi-stop routes repeat themselves', () => {
         const routes = [[1, 2], [4, 3, 2]];
         // 121212
         // 432432
@@ -54,6 +54,19 @@ describe('GossipCalculator', () => {
         expect(new GossipCalculator(routes).calculateStops()).toBe(6);
       });
     });
+  });
+
+  describe('3 drivers', () => {
+    test('meeting at the first stop', () => {
+      const routes = [[1], [1], [1]];
+      expect(new GossipCalculator(routes).calculateStops()).toBe(1);
+    });
+
+    test('meeting at the second stop', () => {
+      const routes = [[1], [1], [2, 1]];
+      expect(new GossipCalculator(routes).calculateStops()).toBe(2);
+    })
+
   });
 
 });
