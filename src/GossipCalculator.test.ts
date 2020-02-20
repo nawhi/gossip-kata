@@ -1,4 +1,4 @@
-import { GossipCalculator, Route } from './GossipCalculator';
+import { GossipCalculator } from './GossipCalculator';
 
 describe('GossipCalculator', () => {
   describe('2 drivers', () => {

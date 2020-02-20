@@ -10,7 +10,7 @@ describe('Gossip Calculator Acceptance', () => {
         expect(new GossipCalculator(routes).calculateStops()).toBe(5);
     });
 
-    xit('returns null if not all drivers know all gossips after 480 minutes', () => {
+    it('returns null if not all drivers know all gossips after 480 minutes', () => {
         const routes = [
             [2, 1, 2],
             [5, 2, 8],
