@@ -1,5 +1,8 @@
+type Stop = number;
+type Route = Stop[];
+
 export class GossipCalculator {
-    constructor(private routes: number[][]) {
+    constructor(private routes: Route[]) {
 
     }
 
