@@ -1,6 +1,6 @@
-import { gossipCalculator } from './GossipCalculator';
+import { gossipCalculator } from './gossipCalculator';
 
-describe('GossipCalculator', () => {
+describe('gossipCalculator', () => {
   describe('2 drivers', () => {
     describe('identical-length routes', () => {
       test('meeting at the first stop', () => {

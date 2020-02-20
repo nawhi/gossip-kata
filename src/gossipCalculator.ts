@@ -1,4 +1,5 @@
-import { generateDriverCombinations, GossipTracker } from './GossipTracker';
+import { generateDriverCombinations } from './generateDriverCombinations';
+import { GossipTracker } from './GossipTracker';
 import { Route } from './Route';
 
 const MAX_MINUTES = 480;

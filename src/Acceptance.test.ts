@@ -1,4 +1,4 @@
-import { gossipCalculator } from './GossipCalculator';
+import { gossipCalculator } from './gossipCalculator';
 
 describe('Gossip Calculator Acceptance', () => {
   it('calculates number of stops for drivers to know all the gossips', () => {

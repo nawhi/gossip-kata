@@ -1,18 +1,19 @@
-import { GossipTracker, generateDriverCombinations } from './GossipTracker';
+import { generateDriverCombinations } from './generateDriverCombinations';
+import { GossipTracker} from './GossipTracker';
 
-describe('CombinationMap', () => {
-  it('knows if not all combinations have been registered', () => {
+describe('GossipTracker', () => {
+  it('has no gossip exchanged initially', () => {
     const map = new GossipTracker(2);
     expect(map.allGossipExchanged()).toBe(false);
   });
 
-  it('registers a combination with indices (0-indexed)', () => {
+  it('registers a 0-indexed number combination as a gossip exchange', () => {
     const map = new GossipTracker(2);
     map.registerGossip(0, 1);
     expect(map.allGossipExchanged()).toBe(true);
   });
 
-  it('works for 3', () => {
+  it('knows when all gossip has been exchanged between 3 drivers', () => {
     const map = new GossipTracker(3);
     map.registerGossip(0, 1);
     map.registerGossip(1, 2);
@@ -20,7 +21,7 @@ describe('CombinationMap', () => {
     expect(map.allGossipExchanged()).toBe(true);
   });
 
-  it('ignores duplicate registrations', () => {
+  it('ignores duplicates', () => {
     const map = new GossipTracker(3);
     map.registerGossip(0, 1);
     map.registerGossip(1, 0);
@@ -33,19 +34,4 @@ describe('CombinationMap', () => {
     map.registerGossip(0, 1);
     expect(map.combinations()).toEqual([[0, 1]]);
   });
-});
-
-describe('generateCombinations', () => {
-  it('generates all combinations of 2 numbers from 3', () => {
-    expect(generateDriverCombinations(3)).toEqual([
-      [0, 1], [0, 2], [1, 2]
-    ]);
-  });
-
-  it('generates all combinations of 2 numbers from 4', () => {
-    expect(generateDriverCombinations(4)).toEqual([
-      [0, 1], [0, 2], [0, 3],
-      [1, 2], [1, 3], [2, 3]
-    ]);
-  })
 });

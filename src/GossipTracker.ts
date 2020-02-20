@@ -1,18 +1,20 @@
+type Driver = number;
+
 export class GossipTracker {
 
   private readonly numCombos: number;
   private registered = new Set<string>();
 
-  constructor(nels: number) {
-    this.numCombos = choose(nels, 2);
+  constructor(numDrivers: number) {
+    this.numCombos = choose(numDrivers, 2);
   }
 
-  public registerGossip(i: number, j: number) {
+  public registerGossip(i: Driver, j: Driver) {
     const hashedValue: string = tuple(i, j);
     this.registered.add(hashedValue);
   }
 
-  public combinations(): number[][] {
+  public combinations(): Driver[][] {
     return [...this.registered].map(detuple);
   }
 
@@ -20,18 +22,6 @@ export class GossipTracker {
     return this.registered.size === this.numCombos;
   }
 
-}
-
-export function generateDriverCombinations(nels: number): number[][] {
-  const tracker = new GossipTracker(nels);
-  for (let i = 0; i < nels; i++) {
-    for (let j = 0; j < nels; j++) {
-      if (i !== j) {
-        tracker.registerGossip(i, j);
-      }
-    }
-  }
-  return tracker.combinations();
 }
 
 function tuple(i, j): string {
